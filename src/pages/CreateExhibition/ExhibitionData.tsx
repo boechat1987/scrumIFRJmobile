@@ -16,18 +16,18 @@ import * as ImagePicker from 'expo-image-picker'
 
 import api from '../../services/api';
 
-interface OrphanageDataParams {
+interface ExhibitionDataParams {
   position: {
     latitude: number;
     longitude: number;
   }
 }
 
-export default function OrphanageData() {
+export default function ExhibitionData() {
   const routes = useRoute();
   const navigation = useNavigation();
 
-  const { position } = routes.params as OrphanageDataParams;
+  const { position } = routes.params as ExhibitionDataParams;
 
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
@@ -36,7 +36,7 @@ export default function OrphanageData() {
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<string[]>([]);
 
-  const handleCreateOrphanage = () => {
+  const handleCreateExhibition = () => {
     const { latitude, longitude } = position;
 
     const data = new FormData();
@@ -57,9 +57,9 @@ export default function OrphanageData() {
       } as any);
     });
 
-    api.post('/orphanages', data)
+    api.post('/exhibitions', data)
       .then(() => {
-        navigation.navigate('OrphanagesMap');
+        navigation.navigate('ExhibitionsMap');
       })
       .catch(() => {
         return alert('Houve um erro inesperado.');
@@ -155,7 +155,7 @@ export default function OrphanageData() {
         />
       </View>
 
-      <RectButton style={styles.nextButton} onPress={handleCreateOrphanage}>
+      <RectButton style={styles.nextButton} onPress={handleCreateExhibition}>
         <Text style={styles.nextButtonText}>Cadastrar</Text>
       </RectButton>
     </ScrollView>

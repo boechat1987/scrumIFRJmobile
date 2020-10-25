@@ -12,7 +12,7 @@ export default function SelectMapPosition() {
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
 
   const handleNextStep = () => {
-    navigation.navigate('OrphanageData', { position });
+    navigation.navigate('ExhibitionData', { position });
   }
 
   const handleSelectedMapPosition = (event: MapEvent) => {

@@ -9,29 +9,29 @@ import mapMarker from '../images/map-marker.png';
 
 import api from '../services/api';
 
-interface OrphanagesItem {
+interface ExhibitionsItem {
   id: number;
   name: string;
   latitude: number;
   longitude: number;
 }
 
-const OrphanagesMap: React.FC = () => {
+const ExhibitionsMap: React.FC = () => {
   const navigation = useNavigation();
 
-  const [orphanages, setOrphanages] = useState<OrphanagesItem[]>([]);
+  const [exhibitions, setExhibitions] = useState<ExhibitionsItem[]>([]);
 
   useFocusEffect(() => {
-    api.get('/orphanages').then(({ data }) => {
-      setOrphanages(data)
+    api.get('/exhibitions').then(({ data }) => {
+      setExhibitions(data)
     })
   });
 
-  const handleNavigationToOrphanagesDetails = (id: number) => {
-    navigation.navigate('OrphanageDetails', { id }); 
+  const handleNavigationToExhibitionsDetails = (id: number) => {
+    navigation.navigate('ExhibitionDetails', { id }); 
   }
 
-  const handleToCreateOrphanage = () => {
+  const handleToCreateExhibition = () => {
     navigation.navigate('SelectMapPosition');
   }
 
@@ -48,23 +48,23 @@ const OrphanagesMap: React.FC = () => {
         }} 
       >
 
-        {orphanages.map(orphanage => {
+        {exhibitions.map(exhibition => {
           return (
             <Marker 
-              key={orphanage.id}
+              key={exhibition.id}
               icon={mapMarker}
               calloutAnchor={{
                 x: 2.7,
                 y: 0.9
               }}
               coordinate={{
-                latitude: orphanage.latitude, 
-                longitude: orphanage.longitude, 
+                latitude: exhibition.latitude, 
+                longitude: exhibition.longitude, 
               }}
             >
-              <Callout tooltip onPress={() => { handleNavigationToOrphanagesDetails(orphanage.id) }}>
+              <Callout tooltip onPress={() => { handleNavigationToExhibitionsDetails(exhibition.id) }}>
                 <View style={styles.calloutContainer}>
-                  <Text style={styles.calloutText}>{orphanage.name}</Text>
+                  <Text style={styles.calloutText}>{exhibition.name}</Text>
                 </View>
               </Callout>
             </Marker>
@@ -74,9 +74,9 @@ const OrphanagesMap: React.FC = () => {
       </MapView>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>{orphanages.length} Exposições encontrados</Text>
+        <Text style={styles.footerText}>{exhibitions.length} Exposições encontrados</Text>
         
-        <RectButton style={styles.createOrphanageButton} onPress={handleToCreateOrphanage}>
+        <RectButton style={styles.createExhibitionButton} onPress={handleToCreateExhibition}>
           <Feather name='plus' size={20} color='#fff' />
         </RectButton>
       </View>
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     color: '#8fa7b3'
   },
 
-  createOrphanageButton: {
+  createExhibitionButton: {
     width: 56,
     height: 56,
     backgroundColor: '#15c3d6',
@@ -143,4 +143,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OrphanagesMap;
+export default ExhibitionsMap;

@@ -4,10 +4,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Header from './components/Header';
 
-import OrphanagesMap from "./pages/OrphanagesMap";
-import OrphanageDetails from "./pages/OrphanageDetails";
-import SelectMapPosition from "./pages/CreateOrphanage/SelectMapPosition";
-import OrphanageData from "./pages/CreateOrphanage/OrphanageData";
+import ExhibitionsMap from "./pages/ExhibitionsMap";
+import ExhibitionDetails from "./pages/ExhibitionDetails";
+import SelectMapPosition from "./pages/CreateExhibition/SelectMapPosition";
+import ExhibitionData from "./pages/CreateExhibition/ExhibitionData";
 
 
 const { Navigator, Screen } = createStackNavigator();
@@ -16,11 +16,11 @@ const Routes: React.FC = () => {
   return (
     <NavigationContainer>
       <Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
-        <Screen name="OrphanagesMap" component={OrphanagesMap} />
+        <Screen name="ExhibitionsMap" component={ExhibitionsMap} />
 
         <Screen 
-          name="OrphanageDetails" 
-          component={OrphanageDetails} 
+          name="ExhibitionDetails" 
+          component={ExhibitionDetails} 
           options={{
             headerShown: true,
             header: () => <Header showCancel={false} title="Exposição" />
@@ -37,8 +37,8 @@ const Routes: React.FC = () => {
         />
 
         <Screen 
-          name="OrphanageData" 
-          component={OrphanageData}
+          name="ExhibitionData" 
+          component={ExhibitionData}
           options={{
             headerShown: true,
             header: () => <Header title="Informe os dados" />

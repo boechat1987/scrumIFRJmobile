@@ -13,7 +13,7 @@ const Header = ({ title, showCancel =  true }: HeaderProps) => {
   const navigation = useNavigation();
 
   const HandleBackHomePage = () => {
-    navigation.navigate('OrphanagesMap')
+    navigation.navigate('ExhibitionsMap')
   }
 
   return (

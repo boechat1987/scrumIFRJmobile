@@ -17,11 +17,11 @@ import { useRoute } from '@react-navigation/native'
 import mapMarkerImg from '../images/map-marker.png';
 import api from '../services/api';
 
-interface OrphanageDetailsParams {
+interface ExhibitionDetailsParams {
   id: number;
 }
 
-interface Orphanage {
+interface Exhibition {
   id: number;
   name: string;
   latitude: number;
@@ -36,20 +36,20 @@ interface Orphanage {
   }>
 }
 
-export default function OrphanageDetails() {
+export default function ExhibitionDetails() {
   const route = useRoute();
 
-  const { id } = route.params as OrphanageDetailsParams
+  const { id } = route.params as ExhibitionDetailsParams
 
-  const [orphanage, setOrphanage] = useState<Orphanage>();
+  const [exhibition, setExhibition] = useState<Exhibition>();
 
   useEffect(() => {
-    api.get(`/orphanages/${id}`).then(({ data }) => {
-      setOrphanage(data)
+    api.get(`/exhibitions/${id}`).then(({ data }) => {
+      setExhibition(data)
     })
   }, [id])
 
-  if (!orphanage) {
+  if (!exhibition) {
     return (
       <View style={styles.container}>
         <Text style={styles.description} >Carregando...</Text>
@@ -58,14 +58,14 @@ export default function OrphanageDetails() {
   }
 
   const handleOpenGoogleMapsRoutes = () => {
-    Linking.openURL(`http://maps.google.com/maps?saddr=${orphanage.latitude},${orphanage.longitude}`);
+    Linking.openURL(`http://maps.google.com/maps?saddr=${exhibition.latitude},${exhibition.longitude}`);
   }
  
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imagesContainer}>
         <ScrollView horizontal pagingEnabled>
-          {orphanage.images.map((image) => {
+          {exhibition.images.map((image) => {
             return (
               <Image 
                 key={image.id}
@@ -78,14 +78,14 @@ export default function OrphanageDetails() {
       </View>
 
       <View style={styles.detailsContainer}>
-        <Text style={styles.title}>{orphanage.name}</Text>
-        <Text style={styles.description}>{orphanage.about}</Text>
+        <Text style={styles.title}>{exhibition.name}</Text>
+        <Text style={styles.description}>{exhibition.about}</Text>
       
         <View style={styles.mapContainer}>
           <MapView 
             initialRegion={{
-              latitude: orphanage.latitude,
-              longitude: orphanage.longitude,
+              latitude: exhibition.latitude,
+              longitude: exhibition.longitude,
               latitudeDelta: 0.008,
               longitudeDelta: 0.008,
             }} 
@@ -98,8 +98,8 @@ export default function OrphanageDetails() {
             <Marker 
               icon={mapMarkerImg}
               coordinate={{ 
-                latitude: orphanage.latitude,
-                longitude: orphanage.longitude,
+                latitude: exhibition.latitude,
+                longitude: exhibition.longitude,
               }}
             />
           </MapView>
@@ -112,15 +112,15 @@ export default function OrphanageDetails() {
         <View style={styles.separator} />
 
         <Text style={styles.title}>Instruções para visita</Text>
-            <Text style={styles.description}>{orphanage.instructions}</Text>
+            <Text style={styles.description}>{exhibition.instructions}</Text>
 
         <View style={styles.scheduleContainer}>
           <View style={[styles.scheduleItem, styles.scheduleItemBlue]}>
             <Feather name='clock' size={40} color='#2AB5D1' />
-            <Text style={[styles.scheduleText, styles.scheduleTextBlue]}>Segunda à Sexta {orphanage.opening_hours}</Text>
+            <Text style={[styles.scheduleText, styles.scheduleTextBlue]}>Segunda à Sexta {exhibition.opening_hours}</Text>
           </View>
 
-          {orphanage.open_on_weekends ? (
+          {exhibition.open_on_weekends ? (
             <View style={[styles.scheduleItem, styles.scheduleItemGreen]}>
              <Feather name='info' size={40} color='#39CC83' />
              <Text style={[styles.scheduleText, styles.scheduleTextGreen]}>Atendemos fim de semana</Text>
