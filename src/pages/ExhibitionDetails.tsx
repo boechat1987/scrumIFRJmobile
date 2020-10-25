@@ -80,7 +80,7 @@ export default function ExhibitionDetails() {
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{exhibition.name}</Text>
         <Text style={styles.description}>{exhibition.about}</Text>
-      
+
         <View style={styles.mapContainer}>
           <MapView 
             initialRegion={{
@@ -97,7 +97,7 @@ export default function ExhibitionDetails() {
           >
             <Marker 
               icon={mapMarkerImg}
-              coordinate={{ 
+              coordinate={{
                 latitude: exhibition.latitude,
                 longitude: exhibition.longitude,
               }}
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
 
   mapContainer: {
     borderRadius: 20,
-    overflow: 'hidden',
+    /* overflow: 'hidden', */
     borderWidth: 1.2,
     borderColor: '#B3DAE2',
     marginTop: 40,
