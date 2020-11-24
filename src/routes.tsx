@@ -4,10 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Header from './components/Header';
 
+import Landing from "./pages/Landing";
+import OnBoardingScreen from "./pages/OnBordingScreen";
 import ExhibitionsMap from "./pages/ExhibitionsMap";
 import ExhibitionDetails from "./pages/ExhibitionDetails";
 import SelectMapPosition from "./pages/CreateExhibition/SelectMapPosition";
 import ExhibitionData from "./pages/CreateExhibition/ExhibitionData";
+
 
 
 const { Navigator, Screen } = createStackNavigator();
@@ -16,6 +19,8 @@ const Routes: React.FC = () => {
   return (
     <NavigationContainer>
       <Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
+        <Screen name="Landing" component={OnBoardingScreen} />
+        
         <Screen name="ExhibitionsMap" component={ExhibitionsMap} />
 
         <Screen 
