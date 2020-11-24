@@ -90,7 +90,7 @@ export default function ExhibitionData() {
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
       <Text style={styles.title}>Dados</Text>
 
-      <Text style={styles.label}>Nome</Text>
+      <Text style={styles.label}>Nome da Exposição</Text>
       <TextInput
         style={styles.input}
         value={name}

@@ -62,7 +62,7 @@ const Simple: React.FC = () => {
 						),
 						subtitle: (
 							<View>
-								<Text style={styles.subTitle}>Faça sua visita...</Text>
+								<Text style={styles.subTitle}>Faça sua visita</Text>
 							</View>
 						),
 					},
@@ -108,15 +108,16 @@ const styles = StyleSheet.create({
 		marginLeft: 20,
 		marginRight: 20,
 		flex: 0,
+		fontWeight: "bold",
 		fontSize: 26,
-		color: "black",
+		color: "rgba(0, 137, 165, 1)",
 		padding: 1,
 	},
 	subTitle: {
 		marginLeft: 28,
 		marginRight: 10,
 		fontSize: 18,
-		color: "black",
+		color: "rgba(0, 137, 165, 1)",
 		marginBottom: 60,
 		padding: 5,
 	},
