@@ -1,10 +1,10 @@
-import React from 'react';
+/* import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Header from './components/Header';
+import {Header} from './components/Header';
 
-import Landing from "./pages/Landing";
+import ExhibitionVisitData from "./pages/CreateExhibition/ExhibitionVisitData";
 import OnBoardingScreen from "./pages/OnBordingScreen";
 import ExhibitionsMap from "./pages/ExhibitionsMap";
 import ExhibitionDetails from "./pages/ExhibitionDetails";
@@ -49,9 +49,89 @@ const Routes: React.FC = () => {
             header: () => <Header title="Informe os dados" />
           }}
         />
+
+        <Screen
+            options={{
+              header: () => <Header title="Adicionar uma exibição" />,
+            }}
+            name="ExhibitionVisitData"
+            component={ExhibitionVisitData}
+        />
+
       </Navigator>
     </NavigationContainer>
   );
 }
 
-export default Routes;
+export default Routes; */
+
+import React from 'react';
+import { ExhibitionDataProvider } from './contexts/exhibitiondata';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import { Header } from './components/Header';
+
+import ExhibitionsMap from './pages/ExhibitionsMap';
+import ExhibitionDetails from './pages/ExhibitionDetails';
+import SelectMapPosition from './pages/CreateExhibition/SelectMapPosition';
+import ExhibitionData from './pages/CreateExhibition/ExhibitionData';
+import ExhibitionVisitData from './pages/CreateExhibition/ExhibitionVisitData';
+import OnBoardingScreen from "./pages/OnBordingScreen";
+
+const { Navigator, Screen } = createStackNavigator();
+
+export default function Routes() {
+  return (
+    <ExhibitionDataProvider>
+      <NavigationContainer>
+        <Navigator>
+          <Screen 
+            options={{
+              headerShown: false,
+            }}
+            name="OnBoardingScreen" 
+            component={OnBoardingScreen} 
+          />
+          <Screen
+            options={{
+              headerShown: false,
+            }}
+            name="ExhibitionsMap"
+            component={ExhibitionsMap}
+          />
+          <Screen
+            options={{
+              header: () => <Header showCancel={false} title="Detalhes" />,
+            }}
+            name="ExhibitionDetails"
+            component={ExhibitionDetails}
+          />
+
+          <Screen
+            options={{
+              header: () => <Header title="Selecione no mapa" />,
+            }}
+            name="SelectMapPosition"
+            component={SelectMapPosition}
+          />
+          <Screen
+            options={{
+              header: () => <Header title="Informe os dados" />,
+            }}
+            name="ExhibitionData"
+            component={ExhibitionData}
+          />
+          <Screen
+            options={{
+              header: () => <Header title="Adicionar uma exposição" />,
+            }}
+            name="ExhibitionVisitData"
+            component={ExhibitionVisitData}
+          />
+        </Navigator>
+      </NavigationContainer>
+    </ExhibitionDataProvider>
+  );
+}
