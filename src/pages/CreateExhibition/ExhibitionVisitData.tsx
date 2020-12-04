@@ -9,6 +9,8 @@ import {
   TextInput,
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Feather';
+import DropDownPicker from 'react-native-dropdown-picker';
 import { RectButton } from 'react-native-gesture-handler';
 import { useExhibitionData } from '../../contexts/exhibitiondata'
 
@@ -31,6 +33,8 @@ const ExhibitionVisitData: React.FC = () => {
     setImages,
     setName,
     setPosition,
+    value,
+    setValue,
   } = useExhibitionData();
 
   async function handleCreateExhibition() {
@@ -42,6 +46,7 @@ const ExhibitionVisitData: React.FC = () => {
     data.append('instructions', instructions);
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', open_on_weekends as any);
+    data.append('category_of_art', value);
     images.forEach((image: any, index: number) => {
       data.append('images', {
         name: `image_${index}.jpg`,
@@ -63,13 +68,14 @@ const ExhibitionVisitData: React.FC = () => {
       setImages([]);
       setInstructions('');
       setOpeningHours('');
+      setValue(null);
       setOpenOnWeekends(true);
       navigation.navigate('ExhibitionsMap');
     } else {
       alert('Não foi possível cadastrar!');
     }
   }
-
+  let controller;
   return (
     <ScrollView
       style={styles.container}
@@ -93,15 +99,47 @@ const ExhibitionVisitData: React.FC = () => {
         onChangeText={(text) => setInstructions(text)}
       />
 
-      <Text style={styles.label}>Horario de visitas</Text>
+      <Text style={styles.label}>Horário de visitas</Text>
       <TextInput
         style={styles.input}
         value={opening_hours}
         onChangeText={(text) => setOpeningHours(text)}
       />
 
+      <DropDownPicker 
+               items={[
+                  {label: 'Música / Dança', value: 'musica', icon: () => <Icon name="headphones" size={18} color="#900" />, hidden: true},
+                  {label: 'Pintura / Escultura / Fotografia', value: 'pintura', icon: () => <Icon name="camera" size={18} color="#900" />},
+                  {label: 'Teatro / Cinema', value: 'teatro', icon: () => <Icon name="tv" size={18} color="#900" />},
+                  {label: 'Literatura / História em Quadrinho', value: 'literatura', icon: () => <Icon name="book" size={18} color="#900" />},
+                  {label: 'Jogos eletrônicos / Arte Digital', value: 'jogos', icon: () => <Icon name="wifi" size={18} color="#900" />},
+              ]} 
+              /* items={items} */
+              scrollViewProps = {{showsVerticalScrollIndicator: true}}
+              defaultValue = {value}
+              controller={instance => controller = instance}
+              placeholder="Selectione uma categoria"
+              containerStyle={{height: 40}}
+              style={
+                { borderTopLeftRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10,
+                  backgroundColor: '#fff'}
+              }
+              itemStyle={{
+                  justifyContent: 'flex-start',
+              }}
+              /* onChangeList={(items, callback) => {
+                new Promise((resolve, reject) => resolve(setItems(items)))
+                    .then(() => callback())
+                    .catch(() => {});
+              }} */
+              dropDownStyle={{backgroundColor: '#fafafa', height: 80}}
+              onChangeItem={item => 
+                setValue(item.value)
+              }
+        />
+
       <View style={styles.switchContainer}>
-        <Text style={styles.label}>Atende final de semana?</Text>
+            <Text style={styles.label}>Atende final de semana?</Text>
         <Switch
           value={open_on_weekends}
           onValueChange={setOpenOnWeekends}

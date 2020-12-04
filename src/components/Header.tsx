@@ -79,6 +79,7 @@ export const Header: React.FC<IHeaderProps> = ({
     setImages,
     setInstructions,
     setOpenOnWeekends,
+    setValue,
     setOpeningHours,
   } = useExhibitionData();
 
@@ -93,6 +94,7 @@ export const Header: React.FC<IHeaderProps> = ({
     setImages([]);
     setInstructions('');
     setOpeningHours('');
+    setValue(null);
     setOpenOnWeekends(true);
   }
   return (
