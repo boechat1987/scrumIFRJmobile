@@ -1,70 +1,3 @@
-/* import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from "@react-navigation/stack";
-
-import {Header} from './components/Header';
-
-import ExhibitionVisitData from "./pages/CreateExhibition/ExhibitionVisitData";
-import OnBoardingScreen from "./pages/OnBordingScreen";
-import ExhibitionsMap from "./pages/ExhibitionsMap";
-import ExhibitionDetails from "./pages/ExhibitionDetails";
-import SelectMapPosition from "./pages/CreateExhibition/SelectMapPosition";
-import ExhibitionData from "./pages/CreateExhibition/ExhibitionData";
-
-
-
-const { Navigator, Screen } = createStackNavigator();
-
-const Routes: React.FC = () => {
-  return (
-    <NavigationContainer>
-      <Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
-        <Screen name="Landing" component={OnBoardingScreen} />
-        
-        <Screen name="ExhibitionsMap" component={ExhibitionsMap} />
-
-        <Screen 
-          name="ExhibitionDetails" 
-          component={ExhibitionDetails} 
-          options={{
-            headerShown: true,
-            header: () => <Header showCancel={false} title="Exposição" />
-          }}
-        />
-
-        <Screen 
-          name="SelectMapPosition" 
-          component={SelectMapPosition}
-          options={{
-            headerShown: true,
-            header: () => <Header title="Selecione no mapa" />
-          }}
-        />
-
-        <Screen 
-          name="ExhibitionData" 
-          component={ExhibitionData}
-          options={{
-            headerShown: true,
-            header: () => <Header title="Informe os dados" />
-          }}
-        />
-
-        <Screen
-            options={{
-              header: () => <Header title="Adicionar uma exibição" />,
-            }}
-            name="ExhibitionVisitData"
-            component={ExhibitionVisitData}
-        />
-
-      </Navigator>
-    </NavigationContainer>
-  );
-}
-
-export default Routes; */
-
 import React from 'react';
 import { ExhibitionDataProvider } from './contexts/exhibitiondata';
 
@@ -72,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Header } from './components/Header';
-
+import { SearchBar } from './components/SearchBar';
 import ExhibitionsMap from './pages/ExhibitionsMap';
 import ExhibitionDetails from './pages/ExhibitionDetails';
 import SelectMapPosition from './pages/CreateExhibition/SelectMapPosition';
@@ -96,7 +29,7 @@ export default function Routes() {
           />
           <Screen
             options={{
-              headerShown: false,
+              header: () => <SearchBar showCancel={false} title="SearchBar" />,
             }}
             name="ExhibitionsMap"
             component={ExhibitionsMap}
