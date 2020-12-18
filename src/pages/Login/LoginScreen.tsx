@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { Button } from "react-native-elements";
+import api from '../../services/api';
 
 export default function LoginMap() {
     const navigation = useNavigation();
@@ -9,7 +10,20 @@ export default function LoginMap() {
    const [ password, setPassword ] = useState("");
 
    const handleLogin = ()=>{
-        return alert("Logado")
+    if (email !== "" && password !== "")
+    {   
+        api.post(`/users/auth`, {
+          email: email,
+          password: password
+        })
+        .then(({ data }) => {
+          console.log(data)
+          navigation.navigate("ExhibitionsMap")
+        })
+        .catch(error=>{
+        return alert("Ocorreu um erro, favor verificar se email e senha estão corretos")
+        });
+    }
              /* navigation.navigate("OnBoardingScreen")  */
    }
     return(

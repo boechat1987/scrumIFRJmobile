@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Button } from "react-native-elements";
 import { Icon } from "react-native-elements";
+import api from '../../services/api';
+
 export default function RegisterMap() {
   const navigation = useNavigation();
-  const [name, setName ] = useState("");
+  const [ name, setName ] = useState("");
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
 
   const handleRegister = ()=>{
-       return alert("Registrado")
+    if (email !== "" && name !== "" && password !== "")
+    {   
+        api.post(`/users`, {
+          name: name,
+          email: email,
+          password: password
+        })
+        .then(({ data }) => {
+          console.log(data)
+          navigation.navigate("LoginScreen")
+        })
+        .catch(error=>{
+        return alert(`Email já está cadastrado`)
+        });
+    }
             /* navigation.navigate("OnBoardingScreen")  */
   }
   return(
