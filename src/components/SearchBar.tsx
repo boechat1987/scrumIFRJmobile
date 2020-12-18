@@ -41,7 +41,6 @@ export const SearchBar: React.FC<IHeaderProps> = ({
           setExhibitionsId(data.id)
           setExhibitionsLongitude(data.longitude)
           setExhibitionsLatitude(data.latitude)
-          alert(`${exhibitionsId} `)
           showButton();
         })
         .catch(error=>{
@@ -59,7 +58,6 @@ export const SearchBar: React.FC<IHeaderProps> = ({
 
   function alerta(id: number){
     navigation.navigate('ExhibitionDetails', { id });
-    return alert('Pressed');
   }
 
   return (
@@ -96,7 +94,7 @@ export const SearchBar: React.FC<IHeaderProps> = ({
           "top": 60,
           "margin": 10
         }}
-        icon="camera" mode="contained" onPress={() => alerta(exhibitionsId)}>
+         mode="contained" onPress={() => alerta(exhibitionsId)}>
          <Text>Ir para {exhibitionsName}?</Text>
         </Button>
         ) : (<View></View>)}

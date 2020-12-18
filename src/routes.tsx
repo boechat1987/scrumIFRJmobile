@@ -12,6 +12,8 @@ import SelectMapPosition from './pages/CreateExhibition/SelectMapPosition';
 import ExhibitionData from './pages/CreateExhibition/ExhibitionData';
 import ExhibitionVisitData from './pages/CreateExhibition/ExhibitionVisitData';
 import OnBoardingScreen from "./pages/OnBordingScreen";
+import RegisterScreen from './pages/Login/RegisterScreen';
+import LoginScreen from './pages/Login/LoginScreen';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -27,9 +29,23 @@ export default function Routes() {
             name="OnBoardingScreen" 
             component={OnBoardingScreen} 
           />
+          <Screen 
+            options={{
+              header: () => <Header title="Registro de usuário" showCancel={false}/>,
+            }}
+            name="RegisterScreen" 
+            component={RegisterScreen} 
+          />
+          <Screen 
+            options={{
+              header: () => <Header title="Iniciar Sessão" showCancel={false}/>,
+            }}
+            name="LoginScreen" 
+            component={LoginScreen} 
+          />
           <Screen
             options={{
-              header: () => <SearchBar showCancel={false} title="SearchBar" />,
+              header: () => <SearchBar showCancel={false} title="Barra de busca" />,
             }}
             name="ExhibitionsMap"
             component={ExhibitionsMap}

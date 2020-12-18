@@ -69,6 +69,18 @@ const Simple: React.FC = () => {
 					{
 						title: (
 							<View style={styles.container}>
+								<Button 
+								title="ACESSO RESTRITO" 
+								buttonStyle={{
+									marginBottom: 10,
+									borderRadius: 20,
+									width: 120,
+									height: 54,
+									backgroundColor: "#14b4c9",
+								}}
+								onPress={() => navigation.navigate('LoginScreen')} 
+								/>
+
 								<Button
 									title={"ENTRAR"}
 									buttonStyle={{
