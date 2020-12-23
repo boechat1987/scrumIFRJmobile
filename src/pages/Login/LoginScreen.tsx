@@ -17,7 +17,7 @@ export default function LoginMap() {
           password: password
         })
         .then(({ data }) => {
-          console.log(data)
+         
           navigation.navigate("ExhibitionsMap")
         })
         .catch(error=>{

@@ -14,6 +14,8 @@ import ExhibitionVisitData from './pages/CreateExhibition/ExhibitionVisitData';
 import OnBoardingScreen from "./pages/OnBordingScreen";
 import RegisterScreen from './pages/Login/RegisterScreen';
 import LoginScreen from './pages/Login/LoginScreen';
+import FirebaseLogin from './pages/Login/FirebaseLogin';
+import GoogleLogin from './pages/Login/GoogleLogin';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -28,6 +30,22 @@ export default function Routes() {
             }}
             name="OnBoardingScreen" 
             component={OnBoardingScreen} 
+          />
+          <Screen 
+            options={{
+              headerShown: false,
+              /* header: () => <Header title="Iniciar Sessão" showCancel={false}/>, */
+            }}
+            name="GoogleLogin"
+            component={GoogleLogin} 
+          />
+          <Screen 
+            options={{
+              headerShown: false,
+              /* header: () => <Header title="Iniciar Sessão" showCancel={false}/>, */
+            }}
+            name="FirebaseLogin"
+            component={FirebaseLogin} 
           />
           <Screen 
             options={{

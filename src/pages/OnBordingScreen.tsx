@@ -78,7 +78,7 @@ const Simple: React.FC = () => {
 									height: 54,
 									backgroundColor: "#14b4c9",
 								}}
-								onPress={() => navigation.navigate('LoginScreen')} 
+								onPress={() => navigation.navigate('GoogleLogin')} 
 								/>
 
 								<Button

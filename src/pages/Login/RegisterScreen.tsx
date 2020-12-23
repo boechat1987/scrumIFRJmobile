@@ -20,7 +20,7 @@ export default function RegisterMap() {
           password: password
         })
         .then(({ data }) => {
-          console.log(data)
+          
           navigation.navigate("LoginScreen")
         })
         .catch(error=>{
