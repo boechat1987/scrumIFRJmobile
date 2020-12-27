@@ -60,6 +60,10 @@ export default function ExhibitionDetails() {
   const handleOpenGoogleMapsRoutes = () => {
     Linking.openURL(`http://maps.google.com/maps?saddr=${exhibition.latitude},${exhibition.longitude}`);
   }
+
+  const handleOpenWhatsapp = () => {
+    Linking.openURL(`https://api.whatsapp.com/send?phone=5521971486406&text=FC%20ART%20Whatsapp`);
+  }
  
   return (
     <ScrollView style={styles.container}>
@@ -133,7 +137,7 @@ export default function ExhibitionDetails() {
           )}
         </View>
 
-        <RectButton style={styles.contactButton} onPress={() => {}}>
+        <RectButton style={styles.contactButton} onPress={() => {handleOpenWhatsapp}}>
           <FontAwesome name='whatsapp' size={24} color='#FFF' />
           <Text style={styles.contactButtonText}>Entrar em contato</Text>
         </RectButton>
