@@ -137,7 +137,7 @@ export default function ExhibitionDetails() {
           )}
         </View>
 
-        <RectButton style={styles.contactButton} onPress={() => {handleOpenWhatsapp}}>
+        <RectButton style={styles.contactButton} onPress={handleOpenWhatsapp}>
           <FontAwesome name='whatsapp' size={24} color='#FFF' />
           <Text style={styles.contactButtonText}>Entrar em contato</Text>
         </RectButton>
