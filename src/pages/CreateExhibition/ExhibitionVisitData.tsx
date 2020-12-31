@@ -35,6 +35,8 @@ const ExhibitionVisitData: React.FC = () => {
     setPosition,
     value,
     setValue,
+    telephone,
+    setTelephone,
   } = useExhibitionData();
 
   async function handleCreateExhibition() {
@@ -45,6 +47,7 @@ const ExhibitionVisitData: React.FC = () => {
     data.append('longitude', position.longitude as any);
     data.append('instructions', instructions);
     data.append('opening_hours', opening_hours);
+    data.append('telephone', telephone);
     data.append('open_on_weekends', open_on_weekends as any);
     data.append('category_of_art', value);
     images.forEach((image: any, index: number) => {
@@ -69,6 +72,7 @@ const ExhibitionVisitData: React.FC = () => {
       setInstructions('');
       setOpeningHours('');
       setValue(null);
+      setTelephone(null);
       setOpenOnWeekends(true);
       navigation.navigate('ExhibitionsMap');
     } else {

@@ -8,15 +8,20 @@ import {useNavigation, useFocusEffect} from "@react-navigation/native"
 export default function GoogleLogin() {
     const [accessToken, setAccessToken] = useState<string | null>()
     const navigation = useNavigation();
-
+    
     useFocusEffect( () => {
         async function getData(){
             try {
                 const storedAccessToken = await AsyncStorage.getItem('@accessToken')
                 const storedUser = await AsyncStorage.getItem('@user')
                 if(storedAccessToken !== null && storedUser !== null) {
+                    setAccessToken(storedAccessToken);
                     console.log(storedUser)
+                    console.log(storedAccessToken)
                     /* navigation.navigate('GoogleLogin'); */
+                }
+                else{
+                    handleSignIn()
                 }
             } catch(e) {
                 // error reading value
@@ -34,14 +39,16 @@ export default function GoogleLogin() {
     }
 
     async function handleSignOut() {
+        const storedAccessToken = await AsyncStorage.getItem('@accessToken');
+        
         try {
             // @ts-ignore
-            await Google.logOutAsync({accessToken, ...config})
+            await Google.logOutAsync({accessToken: storedAccessToken, ...config})
             setAccessToken(null)
             /* setUser(null) */
             await AsyncStorage.removeItem('@accessToken')
             await AsyncStorage.removeItem('@user')
-            /* navigation.navigate('Login') */
+            navigation.navigate('LoginScreen')
         } catch (e) {
             console.log(e)
             return {error: true}
@@ -56,8 +63,8 @@ export default function GoogleLogin() {
             if (type === 'success') {
                 await AsyncStorage.setItem('@accessToken', accessToken)
                 await AsyncStorage.setItem('@user', JSON.stringify(user))
-                navigation.navigate('GoogleLogin')
-                console.log(accessToken)
+                navigation.navigate('ExhibitionsMap')
+                console.log(accessToken, "aaa")
                 return accessToken
             } else {
                 return {cancelled: true}
@@ -69,11 +76,12 @@ export default function GoogleLogin() {
 
         return (
             <><View style={styles.container}>
-                <Button onPress={handleSignIn} title="LOG IN" />
+                {/* <Button onPress={handleSignIn} title="LOG IN" /> */}
+                <Text>Aguarde...</Text>
             </View>
-                <View style={styles.container}>
+               {accessToken? <View style={styles.container}>
                     <Button onPress={handleSignOut} title="LOG OUT" />
-                </View></>
+        </View> : null}</>
         )
 }
 

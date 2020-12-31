@@ -26,6 +26,8 @@ export default function ExhibitionData() {
     setAbout,
     images,
     setImages,
+    telephone,
+    setTelephone,
   } = useExhibitionData();
 
   async function handleSelectImages() {
@@ -80,7 +82,11 @@ export default function ExhibitionData() {
       />
 
       <Text style={styles.label}>Whatsapp</Text>
-      <TextInput style={styles.input} />
+      <TextInput 
+        style={styles.input} 
+        value={telephone}
+        onChangeText={(number) => setTelephone(number)}
+      />
 
       <Text style={styles.label}>Fotos</Text>
       <View style={styles.uploadedImageContainer}>

@@ -30,6 +30,7 @@ interface Exhibition {
   instructions: string;
   opening_hours: string;
   open_on_weekends: boolean;
+  telephone: number;
   images: Array<{
     id: string;
     url: string;
@@ -62,7 +63,7 @@ export default function ExhibitionDetails() {
   }
 
   const handleOpenWhatsapp = () => {
-    Linking.openURL(`https://api.whatsapp.com/send?phone=5521971486406&text=FC%20ART%20Whatsapp`);
+    Linking.openURL(`https://api.whatsapp.com/send?phone=${exhibition.telephone}&text=FC%20ART%20Whatsapp`);
   }
  
   return (

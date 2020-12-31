@@ -34,10 +34,10 @@ export default function ExhibitionsMap() {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={{
-          latitude: -22.905755,
-          longitude: -43.2287176, 
-          latitudeDelta: 0.008, 
-          longitudeDelta:  0.008
+          latitude: -22.9161531,
+          longitude: -43.2110856, 
+          latitudeDelta: 0.078, 
+          longitudeDelta:  0.078
         }}
       >
         {exhibitions?.map((exhibition, index) => (

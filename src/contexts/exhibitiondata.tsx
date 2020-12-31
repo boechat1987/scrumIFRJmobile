@@ -16,6 +16,7 @@ export const ExhibitionDataProvider: React.FC = (props) => {
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState([] as any);
   const [value, setValue] = useState(null);
+  const [telephone, setTelephone] = useState(null);
 
   return (
     <ExhibitionDataContext.Provider
@@ -36,6 +37,8 @@ export const ExhibitionDataProvider: React.FC = (props) => {
         setImages,
         value,
         setValue,
+        telephone,
+        setTelephone,
       }}
     >
       {props.children}
@@ -61,6 +64,8 @@ export const useExhibitionData = () => {
     setImages,
     value,
     setValue,
+    telephone,
+    setTelephone,
   } = useContext(ExhibitionDataContext) as any;
   return {
     name,
@@ -79,5 +84,7 @@ export const useExhibitionData = () => {
     setImages,
     value,
     setValue,
+    telephone,
+    setTelephone,
   };
 };

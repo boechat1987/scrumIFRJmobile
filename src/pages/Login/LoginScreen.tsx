@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { Button } from "react-native-elements";
+import { Button, SocialIcon } from "react-native-elements";
+import { GoogleSigninButton } from '@react-native-community/google-signin';
 import api from '../../services/api';
 
 export default function LoginMap() {
@@ -46,9 +47,22 @@ export default function LoginMap() {
             onChangeText={(text) => setPassword(text)}
             />
         </View>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Text style={styles.forgot}>Esqueceu a senha?</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <Button 
+								title={"Não possuo cadastro"} 
+								buttonStyle={{
+									width:250,
+                                    backgroundColor:"#14b4c9",
+                                    height:50,
+                                    alignItems:"center",
+                                    justifyContent:"center",
+                                    marginTop:10,
+                                    marginBottom:10
+								}}
+								onPress={() => navigation.navigate("RegisterScreen")} 
+								/>
                                 <Button 
 								title={"ENTRAR"} 
 								buttonStyle={{
@@ -58,24 +72,22 @@ export default function LoginMap() {
                                     height:50,
                                     alignItems:"center",
                                     justifyContent:"center",
-                                    marginTop:20,
+                                    marginTop:10,
                                     marginBottom:10
 								}}
 								onPress={() => handleLogin()} 
 								/>
-                                <Button 
-								title={"Não possuo cadastro"} 
-								buttonStyle={{
-									width:250,
-                                    backgroundColor:"#14b4c9",
-                                    height:50,
-                                    alignItems:"center",
-                                    justifyContent:"center",
-                                    marginTop:20,
-                                    marginBottom:10
-								}}
-								onPress={() => navigation.navigate("RegisterScreen")} 
-								/>
+                
+                                
+                <Text style={styles.baseText}>Ou Continuar com Google</Text>
+                
+                <SocialIcon
+                  /* title='Continuar com o Google' */
+                  type='google'
+                  onPress={() => {
+                    navigation.navigate("GoogleLogin")
+                    }}
+                />
       </View>
     )
 }
@@ -85,6 +97,10 @@ const styles = StyleSheet.create({
       backgroundColor: '#14b4c9',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    baseText: {
+      color: "white",
+      fontWeight:"bold",
     },
     logo:{
       fontWeight:"bold",
@@ -97,7 +113,7 @@ const styles = StyleSheet.create({
       backgroundColor:"#15c3d6",
       borderRadius:25,
       height:50,
-      marginBottom:20,
+      marginBottom:10,
       justifyContent:"center",
       padding:20
     },

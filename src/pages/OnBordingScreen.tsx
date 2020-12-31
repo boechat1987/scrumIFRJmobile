@@ -67,22 +67,14 @@ const Simple: React.FC = () => {
 						),
 					},
 					{
-						title: (
+						title: (				
+						<Image source={require("../images/fc-art.png")} />
+						),
+						subtitle: (
 							<View style={styles.container}>
-								<Button 
-								title="ACESSO RESTRITO" 
-								buttonStyle={{
-									marginBottom: 10,
-									borderRadius: 20,
-									width: 120,
-									height: 54,
-									backgroundColor: "#14b4c9",
-								}}
-								onPress={() => navigation.navigate('GoogleLogin')} 
-								/>
-
+								<Text style={styles.title}> Bem-vindo!</Text>
 								<Button
-									title={"ENTRAR"}
+									title={"VISITANTE"}
 									buttonStyle={{
 										borderRadius: 20,
 										width: 120,
@@ -93,10 +85,20 @@ const Simple: React.FC = () => {
 								/>
 							</View>
 						),
-						subtitle: "",
 						backgroundColor: "#15c3d6",
 						image: (
-							<Image source={require("../images/fc-art.png")} />
+							<View style={styles.titleAccess}>
+							<Button 
+							title="Área do Expositor" 
+							buttonStyle={{
+								borderRadius: 20,
+								width: 120,
+								height: 54,
+								backgroundColor: "#14b4c9",								
+							}}
+							onPress={() => navigation.navigate('LoginScreen')} 
+							/>
+						</View>	
 						),
 					},
 				]}
@@ -124,6 +126,18 @@ const styles = StyleSheet.create({
 		fontSize: 26,
 		color: "rgba(0, 137, 165, 1)",
 		padding: 1,
+	},
+	titleAccess: {
+		textAlign:"center",
+		alignItems:"center",
+		marginLeft: 20,
+		marginRight: 20,
+		flex: 0,
+		fontWeight: "bold",
+		fontSize: 26,
+		color: "rgba(0, 137, 165, 1)",
+		padding: 0,
+		marginVertical: -190,
 	},
 	subTitle: {
 		marginLeft: 28,
