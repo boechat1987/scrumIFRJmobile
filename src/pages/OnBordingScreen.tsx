@@ -1,26 +1,68 @@
 import { Text, StyleSheet, View } from "react-native";
 import { SafeAreaView, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Icon } from "react-native-elements";
 
 import Onboarding from "react-native-onboarding-swiper";
 import { useNavigation } from "@react-navigation/native";
 
-const Simple: React.FC = () => {
+export default function Simple() {
 	const navigation = useNavigation();
+	const [firstCondition, setFirstCondition] = useState("true");
+	const [secondCondition, setSecondCondition] = useState("false");
+	const [thirdCondition, setThirdCondition] = useState("false");
+	
+	const corOriginalBackground = '#15c3d6';
+	const [alteredColorBackground, setAlteredColorBackground] = useState('#15c3d6');
+	
+	const firstColorButton = '#14b4c9';
+	const [alteredColorButton, setAlteredColorButton] = useState(firstColorButton);
+	const firstFcArt = "../images/fc-art.png"
+	const [alteredFcArt, setAlteredFcArt] = useState(firstFcArt);
+
+	const secondColorBackground = '#321831';
+	const secondColorButton = '#6C74E1';
+	const thirdColorBackground = '#E7DCD3';
+	const thirdColorButton = '#FEC331';
+	
 
 	const onDone = () => (
 		<View style={styles.container}>
 			<Icon
 				style={styles.iconStyle}
-				name='check-circle'
+				name='paint-brush'
 				type='font-awesome'
 				size={44}
 				color='white'
-				onPress={() => navigation.navigate("ExhibitionsMap")}
+				onPress={onclickChangeColor}
 			/>
 		</View>
 	);
+
+	const onclickChangeColor = ()=> {
+		if(firstCondition === "true"){
+		setFirstCondition("false")
+		setSecondCondition("true")
+		setThirdCondition("false")
+		setAlteredColorBackground(secondColorBackground)
+		setAlteredColorButton(secondColorButton)
+		}
+		else if(secondCondition === "true"){
+			setFirstCondition("false")
+			setSecondCondition("false")
+			setThirdCondition("true")
+			setAlteredColorBackground(thirdColorBackground)
+			setAlteredColorButton(thirdColorButton)
+		}
+		else{
+			setFirstCondition("true")
+			setSecondCondition("false")
+			setThirdCondition("false")
+			setAlteredColorBackground(corOriginalBackground)
+			setAlteredColorButton(firstColorButton)
+		}
+		console.log(firstCondition, secondCondition, thirdCondition)
+	}
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -68,7 +110,7 @@ const Simple: React.FC = () => {
 					},
 					{
 						title: (				
-						<Image source={require("../images/fc-art.png")} />
+						<Image source={require(firstFcArt)} />
 						),
 						subtitle: (
 							<View style={styles.container}>
@@ -79,13 +121,13 @@ const Simple: React.FC = () => {
 										borderRadius: 20,
 										width: 120,
 										height: 54,
-										backgroundColor: "#14b4c9",
+										backgroundColor: alteredColorButton,
 									}}
 									onPress={() => navigation.navigate("ExhibitionsMap")}
 								/>
 							</View>
 						),
-						backgroundColor: "#15c3d6",
+						backgroundColor: alteredColorBackground,
 						image: (
 							<View style={styles.titleAccess}>
 							<Button 
@@ -94,7 +136,7 @@ const Simple: React.FC = () => {
 								borderRadius: 20,
 								width: 120,
 								height: 54,
-								backgroundColor: "#14b4c9",								
+								backgroundColor: alteredColorButton,								
 							}}
 							onPress={() => navigation.navigate('LoginScreen')} 
 							/>
@@ -107,7 +149,7 @@ const Simple: React.FC = () => {
 	);
 };
 
-export default Simple;
+
 
 const styles = StyleSheet.create({
 	container: {

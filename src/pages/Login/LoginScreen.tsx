@@ -50,19 +50,7 @@ export default function LoginMap() {
         {/* <TouchableOpacity>
           <Text style={styles.forgot}>Esqueceu a senha?</Text>
         </TouchableOpacity> */}
-        <Button 
-								title={"Não possuo cadastro"} 
-								buttonStyle={{
-									width:250,
-                                    backgroundColor:"#14b4c9",
-                                    height:50,
-                                    alignItems:"center",
-                                    justifyContent:"center",
-                                    marginTop:10,
-                                    marginBottom:10
-								}}
-								onPress={() => navigation.navigate("RegisterScreen")} 
-								/>
+        
                                 <Button 
 								title={"ENTRAR"} 
 								buttonStyle={{
@@ -77,7 +65,19 @@ export default function LoginMap() {
 								}}
 								onPress={() => handleLogin()} 
 								/>
-                
+                <Button 
+								title={"Não possuo cadastro"} 
+								buttonStyle={{
+									width:250,
+                                    backgroundColor:"#14b4c9",
+                                    height:50,
+                                    alignItems:"center",
+                                    justifyContent:"center",
+                                    marginTop:10,
+                                    marginBottom:10
+								}}
+								onPress={() => navigation.navigate("RegisterScreen")} 
+								/>
                                 
                 <Text style={styles.baseText}>Ou Continuar com Google</Text>
                 
