@@ -80,11 +80,11 @@ export const SearchBar: React.FC<IHeaderProps> = ({
       />
       {showCancel ? (
         <BorderlessButton >
-          <Feather name="x" size={24} color="#ff669d" />
+          <Feather name="log-out" size={24} color="#ff669d" />
         </BorderlessButton>
       ) : (
         <View>
-          <Feather name="x" size={24} style={{ opacity: 0 }} />
+          <Feather name="log-out" size={24} style={{ opacity: 0 }} />
         </View>
       )}
       {visible ? (

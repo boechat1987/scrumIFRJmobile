@@ -6,7 +6,7 @@ import { GoogleSigninButton } from '@react-native-community/google-signin';
 import api from '../../services/api';
 
 export default function LoginMap() {
-    const navigation = useNavigation();
+   const navigation = useNavigation();
    const [ email, setEmail ] = useState("");
    const [ password, setPassword ] = useState("");
 
@@ -139,53 +139,3 @@ const styles = StyleSheet.create({
       color:"white"
     }
   });
-
-
-
-  /* import { SafeAreaView } from "react-native"; */
-/* import { Container, Content, Form, Item, Input, Text } from 'native-base';
-import { Button } from "react-native-elements"; */
-
-/* export default function LoginMap() {
-   const navigation = useNavigation();
-   const [ email, setEmail ] = useState("");
-   const [ password, setPassword ] = useState("");
-
-   const handleLogin = ()=>{
-            alert("Logado")
-             navigation.navigate("OnBoardingScreen") 
-   }
-   return( <SafeAreaView style={{ flex: 1 }}>
-        <Container>
-        <Content>
-          <Form >
-            <Item rounded>
-              <Input
-              value={email}
-              onChangeText={(text) => setEmail(text)} 
-              placeholder="Email" />
-            </Item>
-            <Item rounded last>
-              <Input placeholder="Senha" />
-            </Item>
-          </Form>
-          <Button
-          title="CONFIRMAR"
-          buttonStyle={{
-            marginTop: 10,
-            borderRadius: 20,
-            width: 120,
-            height: 54,
-            backgroundColor: "#14b4c9",    
-        }}
-        onPress={() => 
-            {
-            handleLogin;
-        }}
-        >
-          </Button>
-        </Content>
-      </Container>
-    </SafeAreaView>
-   )
-} */

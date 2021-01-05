@@ -1,10 +1,11 @@
-import { Text, StyleSheet, View } from "react-native";
-import { SafeAreaView, Image } from "react-native";
+import { Text, StyleSheet, View, Image, SafeAreaView } from "react-native";
 import React, { useState } from "react";
 import { Button, Icon } from "react-native-elements";
 
 import Onboarding from "react-native-onboarding-swiper";
 import { useNavigation } from "@react-navigation/native";
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Simple() {
 	const navigation = useNavigation();
@@ -17,8 +18,6 @@ export default function Simple() {
 	
 	const firstColorButton = '#14b4c9';
 	const [alteredColorButton, setAlteredColorButton] = useState(firstColorButton);
-	const firstFcArt = "../images/fc-art.png"
-	const [alteredFcArt, setAlteredFcArt] = useState(firstFcArt);
 
 	const secondColorBackground = '#321831';
 	const secondColorButton = '#6C74E1';
@@ -39,13 +38,15 @@ export default function Simple() {
 		</View>
 	);
 
-	const onclickChangeColor = ()=> {
+	 const onclickChangeColor = async ()=> {
 		if(firstCondition === "true"){
 		setFirstCondition("false")
 		setSecondCondition("true")
 		setThirdCondition("false")
 		setAlteredColorBackground(secondColorBackground)
 		setAlteredColorButton(secondColorButton)
+		await AsyncStorage.setItem('@ColorBackground', "secondColorBackground")
+		await AsyncStorage.setItem('@ColorButton', "secondColorButton")
 		}
 		else if(secondCondition === "true"){
 			setFirstCondition("false")
@@ -53,6 +54,8 @@ export default function Simple() {
 			setThirdCondition("true")
 			setAlteredColorBackground(thirdColorBackground)
 			setAlteredColorButton(thirdColorButton)
+			await AsyncStorage.setItem('@ColorBackground', "thirdColorBackground")
+			await AsyncStorage.setItem('@ColorButton', "thirdColorButton")
 		}
 		else{
 			setFirstCondition("true")
@@ -60,8 +63,10 @@ export default function Simple() {
 			setThirdCondition("false")
 			setAlteredColorBackground(corOriginalBackground)
 			setAlteredColorButton(firstColorButton)
+			await AsyncStorage.setItem('@ColorBackground', "corOriginalBackground")
+			await AsyncStorage.setItem('@ColorButton', "firstColorButton")
 		}
-		console.log(firstCondition, secondCondition, thirdCondition)
+		console.log(AsyncStorage.getItem('ColorBackground'))
 	}
 
 	return (
@@ -110,7 +115,11 @@ export default function Simple() {
 					},
 					{
 						title: (				
-						<Image source={require(firstFcArt)} />
+						<Image 
+						source={
+							secondCondition === "true" ? require(`../images/fc-art-white.png`): require('../images/fc-art.png')
+							} 
+						/>
 						),
 						subtitle: (
 							<View style={styles.container}>
