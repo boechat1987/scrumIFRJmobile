@@ -64,7 +64,7 @@ export default function GoogleLogin() {
                 await AsyncStorage.setItem('@accessToken', accessToken)
                 await AsyncStorage.setItem('@user', JSON.stringify(user))
                 navigation.navigate('ExhibitionsMap')
-                console.log(accessToken, "aaa")
+                
                 return accessToken
             } else {
                 return {cancelled: true}

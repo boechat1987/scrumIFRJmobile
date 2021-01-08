@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { Button, SocialIcon } from "react-native-elements";
 import { GoogleSigninButton } from '@react-native-community/google-signin';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../services/api';
 
 export default function LoginMap() {
    const navigation = useNavigation();
    const [ email, setEmail ] = useState("");
    const [ password, setPassword ] = useState("");
+   const [alteredColorBackground, setAlteredColorBackground] = useState('');
+   const [alteredColorButton, setAlteredColorButton] = useState('');
+   const hookedStyles = {
+    backgroundColor: alteredColorBackground,
+  };
+
+      useFocusEffect( () => {
+        async function getColor(){
+            try {
+                const storedBackground = await AsyncStorage.getItem('@ColorBackground')
+                const storedButton = await AsyncStorage.getItem('@ColorButton')
+                if(storedBackground !== null && storedButton !== null) {
+                    setAlteredColorBackground(storedBackground);
+                    setAlteredColorButton(storedButton);
+                }
+            } catch(e) {
+                // error reading value
+            }
+        }
+        getColor()
+    })
 
    const handleLogin = ()=>{
     if (email !== "" && password !== "")
@@ -28,7 +50,7 @@ export default function LoginMap() {
              /* navigation.navigate("OnBoardingScreen")  */
    }
     return(
-<View style={styles.container}>
+        <View style={[styles.container, hookedStyles]}>
         <Text style={styles.logo}>FC ART</Text>
         <View style={styles.inputView} >
           <TextInput  
@@ -55,7 +77,8 @@ export default function LoginMap() {
 								title={"ENTRAR"} 
 								buttonStyle={{
 									width:250,
-                                    backgroundColor:"#fb5b5a",
+                                    /* backgroundColor:"#fb5b5a", */
+                                    backgroundColor: alteredColorButton,
                                     borderRadius:25,
                                     height:50,
                                     alignItems:"center",
@@ -69,7 +92,7 @@ export default function LoginMap() {
 								title={"Não possuo cadastro"} 
 								buttonStyle={{
 									width:250,
-                                    backgroundColor:"#14b4c9",
+                                    backgroundColor: alteredColorBackground,
                                     height:50,
                                     alignItems:"center",
                                     justifyContent:"center",
@@ -94,7 +117,6 @@ export default function LoginMap() {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#14b4c9',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -110,7 +132,7 @@ const styles = StyleSheet.create({
     },
     inputView:{
       width:"80%",
-      backgroundColor:"#15c3d6",
+      backgroundColor:"#14b4c9",
       borderRadius:25,
       height:50,
       marginBottom:10,

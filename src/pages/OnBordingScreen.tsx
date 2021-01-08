@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Icon } from "react-native-elements";
 
 import Onboarding from "react-native-onboarding-swiper";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,6 +24,21 @@ export default function Simple() {
 	const thirdColorBackground = '#E7DCD3';
 	const thirdColorButton = '#FEC331';
 	
+	useFocusEffect( () => {
+        async function getColor(){
+            try {
+                const storedBackground = await AsyncStorage.getItem('@ColorBackground')
+                const storedButton = await AsyncStorage.getItem('@ColorButton')
+                if(storedBackground !== alteredColorBackground && storedButton !== alteredColorButton) {
+                    await AsyncStorage.setItem('@ColorBackground', alteredColorBackground)
+					await AsyncStorage.setItem('@ColorButton', alteredColorButton)
+                }
+            } catch(e) {
+                // error reading value
+            }
+        }
+        getColor()
+    })
 
 	const onDone = () => (
 		<View style={styles.container}>
@@ -45,8 +60,8 @@ export default function Simple() {
 		setThirdCondition("false")
 		setAlteredColorBackground(secondColorBackground)
 		setAlteredColorButton(secondColorButton)
-		await AsyncStorage.setItem('@ColorBackground', "secondColorBackground")
-		await AsyncStorage.setItem('@ColorButton', "secondColorButton")
+		await AsyncStorage.setItem('@ColorBackground', secondColorBackground)
+		await AsyncStorage.setItem('@ColorButton', secondColorButton)
 		}
 		else if(secondCondition === "true"){
 			setFirstCondition("false")
@@ -54,8 +69,8 @@ export default function Simple() {
 			setThirdCondition("true")
 			setAlteredColorBackground(thirdColorBackground)
 			setAlteredColorButton(thirdColorButton)
-			await AsyncStorage.setItem('@ColorBackground', "thirdColorBackground")
-			await AsyncStorage.setItem('@ColorButton', "thirdColorButton")
+			await AsyncStorage.setItem('@ColorBackground', thirdColorBackground)
+			await AsyncStorage.setItem('@ColorButton', thirdColorButton)
 		}
 		else{
 			setFirstCondition("true")
@@ -63,10 +78,10 @@ export default function Simple() {
 			setThirdCondition("false")
 			setAlteredColorBackground(corOriginalBackground)
 			setAlteredColorButton(firstColorButton)
-			await AsyncStorage.setItem('@ColorBackground', "corOriginalBackground")
-			await AsyncStorage.setItem('@ColorButton', "firstColorButton")
+			await AsyncStorage.setItem('@ColorBackground', corOriginalBackground)
+			await AsyncStorage.setItem('@ColorButton', firstColorButton)
 		}
-		console.log(AsyncStorage.getItem('ColorBackground'))
+		
 	}
 
 	return (
