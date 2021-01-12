@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "FC ART",
+    "slug": "fcArt",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "fcart.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -25,6 +26,7 @@
     "android": {
       "package": "fcart.mobile",
       "googleServicesFile": "./google-services.json"
-    }
+    },
+    "sdkversion": "39.0.3"
   }
 }
