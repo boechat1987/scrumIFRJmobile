@@ -27,6 +27,6 @@
       "package": "fcart.mobile",
       "googleServicesFile": "./google-services.json"
     },
-    "sdkversion": "39.0.3"
+    "sdkVersion": "39.0.0"
   }
 }
