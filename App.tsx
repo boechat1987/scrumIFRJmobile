@@ -9,7 +9,7 @@ import {
 import {GoogleLogInConfig} from "expo-google-app-auth";
 
 import Routes from "./src/routes";
-import firebase from 'firebase';
+/* import firebase from 'firebase';
 const firebaseConfig = {
   apiKey: 'AIzaSyBaybQiB4OHXIk9-5y6fkyVYzJ4899f4Ak',
   authDomain: 'fc-art.firebaseapp.com',
@@ -20,7 +20,7 @@ const firebaseConfig = {
   appId: '1:1037610983253:android:4bb12f0e9878adf15819dc',
   measurementId: 'G-measurement-id',
 };
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig); */
 
 const config: GoogleLogInConfig = {
   androidClientId: "1794468350-d2ot378ppn0jc33netp1gfiaab7n1s4m.apps.googleusercontent.com", // expo
