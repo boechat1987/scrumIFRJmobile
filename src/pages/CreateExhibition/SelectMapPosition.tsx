@@ -39,7 +39,7 @@ export default function SelectMapPosition() {
     async function permissionToGetCurrentLocation() {
       const { status } = await Location.requestPermissionsAsync();
       if (status !== 'granted') {
-        Alert.alert('Permission to access location was denied');
+        Alert.alert('Permissão para acessar localização foi negada');
       }
 
       const { coords } = await Location.getCurrentPositionAsync();
