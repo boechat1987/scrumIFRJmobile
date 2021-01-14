@@ -4,7 +4,7 @@ import axios from 'axios';
   baseURL: 'http://localhost:3333'
 }); */
 export const api = axios.create({
-  baseURL: 'http://cbbe56c9ca9a.ngrok.io'
+  baseURL: 'http://86aee66b4bdd.ngrok.io'
 });
 
 export default api;
