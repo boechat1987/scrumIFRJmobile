@@ -1,4 +1,4 @@
-/* import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
 import {
@@ -46,7 +46,7 @@ export default class LoginScreen extends Component<NavigationInjectedProps, Stat
                     actions: [NavigationActions.navigate({ routeName: 'LoginScreen' })],
                 });
                 this.props.navigation.dispatch(resetAction); */
-/*             }).catch(function (error) {
+             }).catch(function (error) {
                 // Handle Errors here.
                 console.log(error)
                 var errorCode = error.code;
@@ -110,10 +110,10 @@ export default class LoginScreen extends Component<NavigationInjectedProps, Stat
             </View>
         )
     }
-} */
+} 
 
 
-/* const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
     loginScreen: {
         flex: 1,
         width: '100%',
@@ -161,5 +161,5 @@ export default class LoginScreen extends Component<NavigationInjectedProps, Stat
 
     loginSignUpText: {
         fontSize: 18,
-    }    */ 
-/* }); */
+    }    
+ });
