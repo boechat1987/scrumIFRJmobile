@@ -26,7 +26,11 @@
     "android": {
       "package": "fcart.mobile",
       "googleServicesFile": "./google-services.json",
-      "permissions": ["ACCESS_COARSE_LOCATION","ACCESS_FINE_LOCATION","ACCESS_BACKGROUND_LOCATION"]
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDPsrOM5JXypyfi34Ks0hn0DiB3U0hJbEs"
+        }
+      }
     },
     "sdkVersion": "39.0.0"
   }
