@@ -6,6 +6,7 @@ import Onboarding from "react-native-onboarding-swiper";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ExhibitionsRepository, { IExhibition } from '../repositories/exhibitions';
 
 export default function Simple() {
 	const navigation = useNavigation();
@@ -24,6 +25,8 @@ export default function Simple() {
 	const thirdColorBackground = '#E7DCD3';
 	const thirdColorButton = '#FEC331';
 	
+	const [exhibitions, setExhibitions] = useState<IExhibition[] | undefined>([]);
+
 	useFocusEffect( () => {
         async function getColor(){
             try {
@@ -37,7 +40,14 @@ export default function Simple() {
                 // error reading value
             }
         }
-        getColor()
+		getColor()
+		
+		async function loadExhibitions() {
+			const response = await ExhibitionsRepository.index();
+			setExhibitions(response?.data);
+		  }
+		  loadExhibitions();
+
     })
 
 	const onDone = () => (
@@ -99,7 +109,7 @@ export default function Simple() {
 						),
 						title: (
 							<View style={styles.container}>
-								<Text style={styles.title}>Localize Exposições próximas de você</Text>
+								<Text style={styles.title}>Localize Exposições próximas de você {exhibitions?.length}</Text>
 							</View>
 						),
 						subtitle: (
