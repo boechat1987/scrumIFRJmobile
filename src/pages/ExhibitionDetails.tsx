@@ -15,6 +15,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { useRoute } from '@react-navigation/native'
 
 import mapMarkerImg from '../images/map-marker.png';
+import ExposiçãoImg from '../images/fotoexposicao.png';
 import api from '../services/api';
 
 interface ExhibitionDetailsParams {
@@ -70,7 +71,7 @@ export default function ExhibitionDetails() {
     <ScrollView style={styles.container}>
       <View style={styles.imagesContainer}>
         <ScrollView horizontal pagingEnabled>
-          {exhibition.images.map((image) => {
+         {exhibition.images.map((image) => {
             return (
               <Image 
                 key={image.id}
@@ -79,6 +80,10 @@ export default function ExhibitionDetails() {
               />
             );
           })}
+          {/* <Image 
+                style={styles.image} 
+                source={ExposiçãoImg} 
+              /> */}
         </ScrollView>
       </View>
 
@@ -101,7 +106,7 @@ export default function ExhibitionDetails() {
             style={styles.mapStyle}
           >
             <Marker 
-              icon={mapMarkerImg}
+              //icon={mapMarkerImg}
               coordinate={{
                 latitude: exhibition.latitude,
                 longitude: exhibition.longitude,

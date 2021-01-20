@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
@@ -20,7 +20,7 @@ export default function ExhibitionsMap() {
     navigation.navigate('SelectMapPosition');
   }
 
-  useFocusEffect(() => {
+   useFocusEffect(() => {
     async function loadExhibitions() {
       const response = await ExhibitionsRepository.index();
       setExhibitions(response?.data);
@@ -40,9 +40,9 @@ export default function ExhibitionsMap() {
           longitudeDelta:  0.078
         }}
       >
-        {exhibitions?.map((exhibition, index) => (
+        {exhibitions && exhibitions.map((exhibition) => (
           <Marker
-            key={index}
+            key={exhibition.id}
             tracksViewChanges={false}
             icon={mapMarker}
             calloutAnchor={{

@@ -64,6 +64,7 @@ export default function Simple() {
 	);
 
 	 const onclickChangeColor = async ()=> {
+		 console.log('chegou aqui')
 		if(firstCondition === "true"){
 		setFirstCondition("false")
 		setSecondCondition("true")
@@ -109,7 +110,7 @@ export default function Simple() {
 						),
 						title: (
 							<View style={styles.container}>
-								<Text style={styles.title}>Localize Exposições próximas de você {exhibitions?.length}</Text>
+								<Text style={styles.title}>Localize Exposições próximas de você</Text>
 							</View>
 						),
 						subtitle: (
